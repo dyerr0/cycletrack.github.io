@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cycle Track</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link  
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"  
+    rel="stylesheet">
+<link rel="icon" type="image/png" href="ICON.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Modal: ingreso de operador y selección de ciclo -->
+  <div id="operatorModal" class="modal">
+    <div class="modal-content slide-in">
+      <h2>Cycle Track</h2>
+
+      <input
+        type="text"
+        id="operatorNumber"
+        class="input-operator-number"
+        placeholder="No. de Reloj"
+        maxlength="6"
+        pattern="\d{6}"
+        inputmode="numeric"
+      />
+      <div id="errorMsg" class="error-msg"></div>
+
+      <button id="cycleTypeButton" class="btn-cycle-type">
+        <span id="cycleTypeLabel">Tipo de ciclo</span>
+        <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10l5 5 5-5H7z"/></svg>
+      </button>
+      <div id="errorMsgType" class="error-msg"></div>
+
+      <button id="operatorSubmit" class="btn-primary">
+        <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Iniciar Medición
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal: seleccionar tipo de ciclo -->
+  <div id="cycleTypeModal" class="modal">
+    <div class="modal-content content-scale cycle-type-modal">
+      <h2>Tipo de Ciclo</h2>
+      <div class="cycle-type-options">
+        <button class="btn-option" data-value="Operacion">Operacion</button>
+        <button class="btn-option" data-value="Setup">Setup</button>
+        <button class="btn-option" data-value="Corte">Corte</button>
+        <button class="btn-option" data-value="Cambio Aplicador">Cambio Aplicador</button>
+        <button class="btn-option" data-value="Cambio de Terminal">Cambio de Terminal</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: resultado promedio -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content content-scale">
+      <h2>Resultado</h2>
+      <p id="operatorResult" class="muted-text"></p>
+      <p id="cycleTypeResult" class="muted-text"></p>
+      <p id="averageTime" class="average-time-display">00:00.00</p>
+      <button id="resultOk" class="btn-primary">
+        <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17h2v-6H3v6zm4 0h2V6H7v11zm4 0h2v-4h-2v4zm4 0h2V9h-2v8zm4 0h2v-2h-2v2z"/></svg>
+        Finalizar
+      </button>
+    </div>
+  </div>
+
+  <div class="main-content fade-in">
+    <header class="header-section">
+      <h1>Toma de Tiempo de Ciclo</h1>
+      <div id="operatorDisplay" class="operator-display"></div>
+    </header>
+
+    <div class="timer-container">
+      <div id="timer" class="timer-display">00:00.00</div>
+      <button id="markButton" class="btn-primary btn-mark-cycle" disabled>
+        <svg class="icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.8A10.2 10.2 0 1 0 22.2 12 10.21 10.21 0 0 0 12 1.8zm.6 10.8h4.5v1.8h-6.3V5.4h1.8v7.2z"/></svg>
+        Marcar Ciclo (<span id="cycleCount"></span>/<span id="cycleTotal"></span>)
+      </button>
+    </div>
+
+    <div class="cycles-list">
+      <h2>Ciclos Completados</h2>
+      <table id="cyclesTable" class="cycles-table">
+        <thead><tr><th>Ciclo</th><th>Tiempo</th></tr></thead>
+        <tbody id="cyclesBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

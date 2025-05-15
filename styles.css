@@ -1,0 +1,319 @@
+/* Reset & Body */
+* {
+  margin: 0;
+  font-size: 2.4vh;
+  font-weight: bold;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #1e2233;
+  color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+@keyframes pulse {
+  from { opacity: 1; }
+  to   { opacity: 0.8; }
+}
+
+/* Header */
+.header-section {
+  width: 100%;
+  padding: 2vw 0;
+  background: linear-gradient(135deg, #2e3a59, #1e2233);
+  text-align: center;
+  box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.5);
+}
+.header-section h1 {
+  font-size: 4vw;
+  margin-bottom: 0.5vw;
+}
+.operator-display {
+  font-size: 1.2vw;
+  color: #a0a8b8;
+  margin-top: 1vw;
+}
+
+/* Modal overlay */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal content */
+.modal-content {
+  background-color: #1e2233;
+  padding: 2vw;
+  border-radius: 0.75vw;
+  box-shadow: 0 1vw 2vw rgba(0,0,0,0.2);
+  width: 30vw;
+  max-width: 90%;
+  text-align: center;
+  animation: scaleIn 0.4s ease-out;
+}
+.modal-content h2 {
+  font-size: 2.5vw;
+  margin-bottom: 2vw;
+}
+
+/* Input operador */
+.input-operator-number {
+  width: 80%;
+  padding: 0.8vw;
+  text-align: center;
+  font-size: 1.2vw;
+  font-weight: bold;
+  border: 0.3vw solid #00458f;
+  border-radius: 0.75vw;
+  background-color: #1e2233;
+  color: #f0f0f0;
+}
+.error-msg {
+  color: #ff6b6b;
+  font-size: 1.2vw;
+  min-height: 1.2vw;
+  font-weight: bold;
+  margin-bottom: 1vw;
+}
+
+/* Botón seleccionar tipo */
+.btn-cycle-type {
+  width: 80%;
+  padding: 1vw 2vw;
+  font-size: 1.2vw;
+  background-color: #00458f;
+  color: #f0f0f0;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.75vw;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.2);
+  margin-bottom: 1vw;
+}
+.btn-cycle-type:hover {
+  transform: translateY(-0.2vw);
+  box-shadow: 0 1vw 3vw rgba(0,0,0,0.5);
+}
+.btn-cycle-type span {
+  font-size: 1.2vw;
+}
+
+/* Botón primario */
+.btn-primary {
+  padding: 1vw 2vw;
+  font-size: 2vw;
+  background-color: #00458f;
+  color: #f0f0f0;
+  border: none;
+  font-weight: bold;
+  border-radius: 0.75vw;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-0.2vw);
+  box-shadow: 0 1vw 3vw rgba(0,0,0,0.5);
+}
+
+/* Botón marcar ciclo */
+.btn-mark-cycle {
+  width: 25vw;
+}
+
+/* Icono */
+.icon {
+  width: 1.5vw;
+  height: 1.5vw;
+  margin-right: 0.8vw;
+}
+
+/* Modal opciones tipo de ciclo */
+.cycle-type-options {
+  display: flex;
+  gap: 1vw;
+  flex-direction: column;
+}
+.btn-option {
+  width: 50%;
+  padding: 0.8vw;
+  font-size: 1.2vw;
+  background-color: #1e2233;
+  color: #f0f0f0;
+  border: 0.3vw solid #00458f;
+  border-radius: 0.75vw;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.btn-option:hover {
+  background-color: #f08a5d;
+}
+
+/* Contenido principal */
+.main-content {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2vw 0;
+}
+
+/* Cronómetro */
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timer-display {
+  font-size: 6vw;
+  margin-bottom: 2vw;
+  font-weight: 500;
+  animation: pulse 1.2s ease-in-out infinite alternate;
+}
+
+/* Promedio en modal */
+.average-time-display {
+  font-size: 6vw;
+  color: #ffed92;
+  margin: 1vw 0;
+}
+
+/* Sección ciclos */
+.cycles-list {
+  width: 35%;
+  margin-top: 2vw;
+  max-height: 51vh;
+  overflow-y: auto;
+  padding-right: 1vw;
+  text-align: center;
+}
+.cycles-list h2 {
+  font-size: 2vw;
+  margin-bottom: 1vw;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Tarjetas de ciclos */
+.cycles-table {
+  width: 100%;
+  border: none;
+}
+.cycles-table thead {
+  display: none;
+}
+.cycles-table tbody {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+}
+.cycles-table tbody tr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e2233;
+  padding: 1vw 1.5vw;
+  border-radius: 0.75vw;
+  box-shadow: 0 0.5vw 2vw rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cycles-table tbody tr:hover {
+  transform: translateY(-0.2vw);
+  box-shadow: 0 1vw 3vw rgba(0,0,0,0.5);
+}
+.cycles-table td {
+  border: none;
+  font-size: 1.2vw;
+  width: 45%;
+}
+.cycles-table td:first-child {
+  font-weight: 500;
+}
+.cycles-table td:last-child {
+  text-align: center;
+  font-family: monospace;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header-section h1 {
+    font-size: 7vw;
+  }
+  .operator-display {
+    font-size: 3vw;
+  }
+  .btn-primary {
+    font-size: 3vw;
+    padding: 2vw 4vw;
+  }
+  .btn-cycle-type {
+    width: 90%;
+    font-size: 3vw;
+  }
+  .btn-mark-cycle {
+    width: 90%;
+  }
+  .input-operator-number {
+    width: 90%;
+    font-size: 3vw;
+    padding: 2vw;
+  }
+  .timer-display {
+    font-size: 10vw;
+  }
+  .average-time-display {
+    font-size: 10vw;
+  }
+  .cycles-list {
+    width: 90%;
+    max-height: 50vh;
+  }
+  .btn-option {
+    width: 100%;
+    font-size: 3vw;
+    padding: 2vw;
+  }
+  .cycles-table tbody tr {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cycles-table td {
+    width: 100%;
+    padding: 1vw 0;
+  }
+}
