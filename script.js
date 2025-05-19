@@ -3,9 +3,9 @@ const flowUrl = 'https://prod-50.japaneast.logic.azure.com:443/workflows/19f7484
 
 // Configuración: cuántos ciclos exige cada tipo
 const cycleConfig = {
-  Operacion:             15,
+  Operacion:             1,
   Setup:                 1,
-  Corte:                 1,
+  Corte:                 15,
   'Cambio Aplicador':    1,
   'Cambio de Terminal':  1
 };
