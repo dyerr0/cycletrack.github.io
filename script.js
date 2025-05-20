@@ -136,15 +136,20 @@ function showAverageAndSend() {
   resultModal.style.display = 'flex';
 
   // Fecha en dd/MM/yyyy
-  const now  = new Date();
-  const dd   = String(now.getDate()).padStart(2,'0');
-  const mm   = String(now.getMonth()+1).padStart(2,'0');
-  const yyyy = now.getFullYear();
-  const fechaStr = `${dd}/${mm}/${yyyy}`;
+  const now = new Date();
+
+  // Fecha base Excel: 1899-12-30
+  const excelEpoch = new Date(Date.UTC(1899, 11, 30));
+
+  // Diferencia en milisegundos
+  const diffMs = now.getTime() - excelEpoch.getTime();
+
+  // Convertir a días (1 día = 86400000 ms)
+  const excelDateNum = diffMs / 86400000;
 
   // Construir payload con todas las columnas
   const payload = {
-    fecha: fechaStr,
+    fecha: excelDateNum,
     numeroReloj: operatorNumber,
     Operacion: '-',
     Setup: '-',
