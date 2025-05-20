@@ -135,21 +135,23 @@ function showAverageAndSend() {
   averageTimeEl.textContent = formatTime(avgMs);
   resultModal.style.display = 'flex';
 
-  // Fecha en dd/MM/yyyy
-  const now = new Date();
+function getExcelSerial(date) {
+  // Excel cuenta desde 1900-01-01 como día 1, e introduce el bug de 1900 como bisiesto:
+  // base = 1899-12-31
+  const base = Date.UTC(1899, 11, 31);
+  const diff = date.getTime() - base;
+  let serial = Math.floor(diff / 86400000);
+  if (serial >= 60) serial++; // ajustar por bug 1900-02-29
+  return serial;
+}
 
-  // Fecha base Excel: 1899-12-30
-  const excelEpoch = new Date(Date.UTC(1899, 11, 30));
-
-  // Diferencia en milisegundos
-  const diffMs = now.getTime() - excelEpoch.getTime();
-
-  // Convertir a días (1 día = 86400000 ms)
-  const excelDateNum = diffMs / 86400000;
+// 2. Sustituye el cálculo de fechaStr con:
+const today = new Date();
+const fechaSerial = getExcelSerial(today);
 
   // Construir payload con todas las columnas
   const payload = {
-    fecha: excelDateNum,
+    fecha: fechaSerial,
     numeroReloj: operatorNumber,
     Operacion: '-',
     Setup: '-',
